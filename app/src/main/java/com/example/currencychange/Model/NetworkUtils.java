@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getName();
-    private static final String BASE_URL = NetworkUtils.class.getName();
-
+    private static final String BASE_URL ="https://fixer-fixer-currency-v1.p.rapidapi.com/";
+    public static final String API_KEY = "3d428328a3mshbe680ff208e3b56p1b6f20jsn9d0f38c4c07b";
     public static boolean myConnection;
     private static NetworkUtils sInstance;
     private ApiInterface apiInterface;
@@ -39,6 +39,7 @@ public class NetworkUtils {
                 .build();
 
         apiInterface = retrofit.create(ApiInterface.class);
+
     }
 
     public static NetworkUtils getInstance(Context context) {

@@ -3,4 +3,5 @@
     <string name="track_currency">Track Currency</string>
     <string name="country_flag">Country Flag</string>
     <string name="country_name">Name</string>
+    <string name="demo">100</string>
 </resources>

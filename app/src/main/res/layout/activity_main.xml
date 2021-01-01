@@ -8,8 +8,8 @@
     tools:context=".View.MainActivity">
 <com.hbb20.CountryCodePicker
         android:id="@+id/from_spinner"
-        android:layout_width="@dimen/hundred_twenty"
-        android:layout_height="@dimen/fifty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/thirty_two"
         android:layout_marginStart="@dimen/thirty_two"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,8 +20,8 @@
 
     <com.hbb20.CountryCodePicker
         android:id="@+id/to_spinner"
-        android:layout_width="@dimen/hundred_twenty"
-        android:layout_height="@dimen/fifty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/thirty_two"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,24 +31,28 @@
 
     <EditText
         android:id="@+id/from_am"
-        android:layout_width="@dimen/fifty"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/eighty"
+        android:layout_height="@dimen/eighty"
         android:layout_marginHorizontal="@dimen/sixteen"
         android:ems="10"
-        android:textSize="@dimen/text_twenty"
-        android:textStyle="bold"
+        android:text="@string/demo"
         android:inputType="number"
+        android:textSize="@dimen/text_sixteen"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/from_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/from_spinner" />
 
     <EditText
         android:id="@+id/to_am"
-        android:layout_width="@dimen/fifty"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/eighty"
+        android:layout_height="@dimen/eighty"
         android:layout_marginHorizontal="@dimen/sixteen"
         android:ems="10"
+        android:textSize="@dimen/text_sixteen"
         android:enabled="false"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/to_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/to_spinner" />
 
@@ -68,10 +72,12 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/two"
         android:layout_marginHorizontal="@dimen/sixteen"
+        android:layout_marginStart="16dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/convert"
+        app:layout_constraintEnd_toStartOf="@+id/convert"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/convert"
+        app:layout_constraintVertical_bias="0.474" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

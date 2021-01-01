@@ -2,7 +2,8 @@ package com.example.currencychange.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 
 import com.example.currencychange.R;
 import com.example.currencychange.ViewModel.CurrencyViewModel;
+import com.example.currencychange.ViewModel.entity.SafetyResult;
 import com.hbb20.CountryCodePicker;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
   private CountryCodePicker fromSpinner , toSpinner ;
   private   ImageView convert;
   private CurrencyViewModel viewModel ;
+  private double result = 0.0 ;
+  private Observer<SafetyResult> convertResult ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +37,44 @@ public class MainActivity extends AppCompatActivity {
         fromSpinner = findViewById(R.id.from_spinner);
         toSpinner = findViewById(R.id.to_spinner);
         convert = findViewById(R.id.convert);
+        convertResult = new Observer<SafetyResult>() {
+            @Override
+            public void onChanged(SafetyResult safetyResult) {
+                if(safetyResult!=null){
+                    result= safetyResult.getResult();
+                    toCurrency.setText(result+"");
+                }
+
+            }
+        };
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String from = fromSpinner.getSelectedCountryNameCode();
-                String to = toSpinner.getSelectedCountryNameCode();
-                double amount = Double.parseDouble(fromCurrency.getText().toString());
-                double result = viewModel.convert(from, to , amount);
-                toCurrency.setText(result+"");
+                CountryCodePicker temp = fromSpinner ;
+                fromSpinner = toSpinner ;
+              toSpinner=temp;
+
             }
         });
 
+        CountryCodePicker.OnCountryChangeListener  countryChangeListener = new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                String from = fromSpinner.getSelectedCountryNameCode();
+                String to = toSpinner.getSelectedCountryNameCode();
+                double amount = Double.parseDouble(fromCurrency.getText().toString());
+                viewModel.convert(from, to , amount).observeForever(convertResult);//observe(convertResult);
+            }
+        } ;
+        fromSpinner.setOnCountryChangeListener(countryChangeListener);
+        toSpinner.setOnCountryChangeListener(countryChangeListener);
+
     }// end onCreate
+
+    private void convert() {
+
+
+    }//end convert
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,8 +85,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+       if(item.getItemId()==R.id.track_currency)
+           //todo: track
+           ;
         return super.onOptionsItemSelected(item);
-    }
+    }// end onOptionsItemSelected
 
 
 
