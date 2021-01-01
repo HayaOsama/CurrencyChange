@@ -3,487 +3,488 @@ package com.example.currencychange.ViewModel.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ConversionRates {
+import java.util.Hashtable;
 
+public class ConversionRates {
     @SerializedName("USD")
     @Expose
-    public Integer USD;
+    public double USD;
     @SerializedName("AED")
     @Expose
-    public Double AED;
+    public double AED;
     @SerializedName("AFN")
     @Expose
-    public Double AFN;
+    public double AFN;
     @SerializedName("ALL")
     @Expose
-    public Double ALL;
+    public double ALL;
     @SerializedName("AMD")
     @Expose
-    public Double AMD;
+    public double AMD;
     @SerializedName("ANG")
     @Expose
-    public Double ANG;
+    public double ANG;
     @SerializedName("AOA")
     @Expose
-    public Double AOA;
+    public double AOA;
     @SerializedName("ARS")
     @Expose
-    public Double ARS;
+    public double ARS;
     @SerializedName("AUD")
     @Expose
-    public Double AUD;
+    public double AUD;
     @SerializedName("AWG")
     @Expose
-    public Double AWG;
+    public double AWG;
     @SerializedName("AZN")
     @Expose
-    public Double AZN;
+    public double AZN;
     @SerializedName("BAM")
     @Expose
-    public Double BAM;
+    public double BAM;
     @SerializedName("BBD")
     @Expose
-    public Double BBD;
+    public double BBD;
     @SerializedName("BDT")
     @Expose
-    public Double BDT;
+    public double BDT;
     @SerializedName("BGN")
     @Expose
-    public Double BGN;
+    public double BGN;
     @SerializedName("BHD")
     @Expose
-    public Double BHD;
+    public double BHD;
     @SerializedName("BIF")
     @Expose
-    public Double BIF;
+    public double BIF;
     @SerializedName("BMD")
     @Expose
-    public Double BMD;
+    public double BMD;
     @SerializedName("BND")
     @Expose
-    public Double BND;
+    public double BND;
     @SerializedName("BOB")
     @Expose
-    public Double BOB;
+    public double BOB;
     @SerializedName("BRL")
     @Expose
-    public Double BRL;
+    public double BRL;
     @SerializedName("BSD")
     @Expose
-    public Double BSD;
+    public double BSD;
     @SerializedName("BTN")
     @Expose
-    public Double BTN;
+    public double BTN;
     @SerializedName("BWP")
     @Expose
-    public Double BWP;
+    public double BWP;
     @SerializedName("BYN")
     @Expose
-    public Double BYN;
+    public double BYN;
     @SerializedName("BZD")
     @Expose
-    public Double BZD;
+    public double BZD;
     @SerializedName("CAD")
     @Expose
-    public Double CAD;
+    public double CAD;
     @SerializedName("CDF")
     @Expose
-    public Double CDF;
+    public double CDF;
     @SerializedName("CHF")
     @Expose
-    public Double CHF;
+    public double CHF;
     @SerializedName("CLP")
     @Expose
-    public Double CLP;
+    public double CLP;
     @SerializedName("CNY")
     @Expose
-    public Double CNY;
+    public double CNY;
     @SerializedName("COP")
     @Expose
-    public Double COP;
+    public double COP;
     @SerializedName("CRC")
     @Expose
-    public Double CRC;
+    public double CRC;
     @SerializedName("CUC")
     @Expose
-    public Double CUC;
+    public double CUC;
     @SerializedName("CUP")
     @Expose
-    public Double CUP;
+    public double CUP;
     @SerializedName("CVE")
     @Expose
-    public Double CVE;
+    public double CVE;
     @SerializedName("CZK")
     @Expose
-    public Double CZK;
+    public double CZK;
     @SerializedName("DJF")
     @Expose
-    public Double DJF;
+    public double DJF;
     @SerializedName("DKK")
     @Expose
-    public Double DKK;
+    public double DKK;
     @SerializedName("DOP")
     @Expose
-    public Double DOP;
+    public double DOP;
     @SerializedName("DZD")
     @Expose
-    public Double DZD;
+    public double DZD;
     @SerializedName("EGP")
     @Expose
-    public Double EGP;
+    public double EGP;
     @SerializedName("ERN")
     @Expose
-    public Double ERN;
+    public double ERN;
     @SerializedName("ETB")
     @Expose
-    public Double ETB;
+    public double ETB;
     @SerializedName("EUR")
     @Expose
-    public Double EUR;
+    public double EUR;
     @SerializedName("FJD")
     @Expose
-    public Double FJD;
+    public double FJD;
     @SerializedName("FKP")
     @Expose
-    public Double FKP;
+    public double FKP;
     @SerializedName("FOK")
     @Expose
-    public Double FOK;
+    public double FOK;
     @SerializedName("GBP")
     @Expose
-    public Double GBP;
+    public double GBP;
     @SerializedName("GEL")
     @Expose
-    public Double GEL;
+    public double GEL;
     @SerializedName("GGP")
     @Expose
-    public Double GGP;
+    public double GGP;
     @SerializedName("GHS")
     @Expose
-    public Double GHS;
+    public double GHS;
     @SerializedName("GIP")
     @Expose
-    public Double GIP;
+    public double GIP;
     @SerializedName("GMD")
     @Expose
-    public Double GMD;
+    public double GMD;
     @SerializedName("GNF")
     @Expose
-    public Double GNF;
+    public double GNF;
     @SerializedName("GTQ")
     @Expose
-    public Double GTQ;
+    public double GTQ;
     @SerializedName("GYD")
     @Expose
-    public Double GYD;
+    public double GYD;
     @SerializedName("HKD")
     @Expose
-    public Double HKD;
+    public double HKD;
     @SerializedName("HNL")
     @Expose
-    public Double HNL;
+    public double HNL;
     @SerializedName("HRK")
     @Expose
-    public Double HRK;
+    public double HRK;
     @SerializedName("HTG")
     @Expose
-    public Double HTG;
+    public double HTG;
     @SerializedName("HUF")
     @Expose
-    public Double HUF;
+    public double HUF;
     @SerializedName("IDR")
     @Expose
-    public Double IDR;
+    public double IDR;
     @SerializedName("ILS")
     @Expose
-    public Double ILS;
+    public double ILS;
     @SerializedName("IMP")
     @Expose
-    public Double IMP;
+    public double IMP;
     @SerializedName("INR")
     @Expose
-    public Double INR;
+    public double INR;
     @SerializedName("IQD")
     @Expose
-    public Double IQD;
+    public double IQD;
     @SerializedName("IRR")
     @Expose
-    public Double IRR;
+    public double IRR;
     @SerializedName("ISK")
     @Expose
-    public Double ISK;
+    public double ISK;
     @SerializedName("JMD")
     @Expose
-    public Double JMD;
+    public double JMD;
     @SerializedName("JOD")
     @Expose
-    public Double JOD;
+    public double JOD;
     @SerializedName("JPY")
     @Expose
-    public Double JPY;
+    public double JPY;
     @SerializedName("KES")
     @Expose
-    public Double KES;
+    public double KES;
     @SerializedName("KGS")
     @Expose
-    public Double KGS;
+    public double KGS;
     @SerializedName("KHR")
     @Expose
-    public Double KHR;
+    public double KHR;
     @SerializedName("KID")
     @Expose
-    public Double KID;
+    public double KID;
     @SerializedName("KMF")
     @Expose
-    public Double KMF;
+    public double KMF;
     @SerializedName("KRW")
     @Expose
-    public Double KRW;
+    public double KRW;
     @SerializedName("KWD")
     @Expose
-    public Double KWD;
+    public double KWD;
     @SerializedName("KYD")
     @Expose
-    public Double KYD;
+    public double KYD;
     @SerializedName("KZT")
     @Expose
-    public Double KZT;
+    public double KZT;
     @SerializedName("LAK")
     @Expose
-    public Double LAK;
+    public double LAK;
     @SerializedName("LBP")
     @Expose
-    public Double LBP;
+    public double LBP;
     @SerializedName("LKR")
     @Expose
-    public Double LKR;
+    public double LKR;
     @SerializedName("LRD")
     @Expose
-    public Double LRD;
+    public double LRD;
     @SerializedName("LSL")
     @Expose
-    public Double LSL;
+    public double LSL;
     @SerializedName("LYD")
     @Expose
-    public Double LYD;
+    public double LYD;
     @SerializedName("MAD")
     @Expose
-    public Double MAD;
+    public double MAD;
     @SerializedName("MDL")
     @Expose
-    public Double MDL;
+    public double MDL;
     @SerializedName("MGA")
     @Expose
-    public Double MGA;
+    public double MGA;
     @SerializedName("MKD")
     @Expose
-    public Double MKD;
+    public double MKD;
     @SerializedName("MMK")
     @Expose
-    public Double MMK;
+    public double MMK;
     @SerializedName("MNT")
     @Expose
-    public Double MNT;
+    public double MNT;
     @SerializedName("MOP")
     @Expose
-    public Double MOP;
+    public double MOP;
     @SerializedName("MRU")
     @Expose
-    public Double MRU;
+    public double MRU;
     @SerializedName("MUR")
     @Expose
-    public Double MUR;
+    public double MUR;
     @SerializedName("MVR")
     @Expose
-    public Double MVR;
+    public double MVR;
     @SerializedName("MWK")
     @Expose
-    public Double MWK;
+    public double MWK;
     @SerializedName("MXN")
     @Expose
-    public Double MXN;
+    public double MXN;
     @SerializedName("MYR")
     @Expose
-    public Double MYR;
+    public double MYR;
     @SerializedName("MZN")
     @Expose
-    public Double MZN;
+    public double MZN;
     @SerializedName("NAD")
     @Expose
-    public Double NAD;
+    public double NAD;
     @SerializedName("NGN")
     @Expose
-    public Double NGN;
+    public double NGN;
     @SerializedName("NIO")
     @Expose
-    public Double NIO;
+    public double NIO;
     @SerializedName("NOK")
     @Expose
-    public Double NOK;
+    public double NOK;
     @SerializedName("NPR")
     @Expose
-    public Double NPR;
+    public double NPR;
     @SerializedName("NZD")
     @Expose
-    public Double NZD;
+    public double NZD;
     @SerializedName("OMR")
     @Expose
-    public Double OMR;
+    public double OMR;
     @SerializedName("PAB")
     @Expose
-    public Double PAB;
+    public double PAB;
     @SerializedName("PEN")
     @Expose
-    public Double PEN;
+    public double PEN;
     @SerializedName("PGK")
     @Expose
-    public Double PGK;
+    public double PGK;
     @SerializedName("PHP")
     @Expose
-    public Double PHP;
+    public double PHP;
     @SerializedName("PKR")
     @Expose
-    public Double PKR;
+    public double PKR;
     @SerializedName("PLN")
     @Expose
-    public Double PLN;
+    public double PLN;
     @SerializedName("PYG")
     @Expose
-    public Double PYG;
+    public double PYG;
     @SerializedName("QAR")
     @Expose
-    public Double QAR;
+    public double QAR;
     @SerializedName("RON")
     @Expose
-    public Double RON;
+    public double RON;
     @SerializedName("RSD")
     @Expose
-    public Double RSD;
+    public double RSD;
     @SerializedName("RUB")
     @Expose
-    public Double RUB;
+    public double RUB;
     @SerializedName("RWF")
     @Expose
-    public Double RWF;
+    public double RWF;
     @SerializedName("SAR")
     @Expose
-    public Double SAR;
+    public double SAR;
     @SerializedName("SBD")
     @Expose
-    public Double SBD;
+    public double SBD;
     @SerializedName("SCR")
     @Expose
-    public Double SCR;
+    public double SCR;
     @SerializedName("SDG")
     @Expose
-    public Double SDG;
+    public double SDG;
     @SerializedName("SEK")
     @Expose
-    public Double SEK;
+    public double SEK;
     @SerializedName("SGD")
     @Expose
-    public Double SGD;
+    public double SGD;
     @SerializedName("SHP")
     @Expose
-    public Double SHP;
+    public double SHP;
     @SerializedName("SLL")
     @Expose
-    public Double SLL;
+    public double SLL;
     @SerializedName("SOS")
     @Expose
-    public Double SOS;
+    public double SOS;
     @SerializedName("SRD")
     @Expose
-    public Double SRD;
+    public double SRD;
     @SerializedName("SSP")
     @Expose
-    public Double SSP;
+    public double SSP;
     @SerializedName("STN")
     @Expose
-    public Double STN;
+    public double STN;
     @SerializedName("SYP")
     @Expose
-    public Double SYP;
+    public double SYP;
     @SerializedName("SZL")
     @Expose
-    public Double SZL;
+    public double SZL;
     @SerializedName("THB")
     @Expose
-    public Double THB;
+    public double THB;
     @SerializedName("TJS")
     @Expose
-    public Double TJS;
+    public double TJS;
     @SerializedName("TMT")
     @Expose
-    public Double TMT;
+    public double TMT;
     @SerializedName("TND")
     @Expose
-    public Double TND;
+    public double TND;
     @SerializedName("TOP")
     @Expose
-    public Double TOP;
+    public double TOP;
     @SerializedName("TRY")
     @Expose
-    public Double TRY;
+    public double TRY;
     @SerializedName("TTD")
     @Expose
-    public Double TTD;
+    public double TTD;
     @SerializedName("TVD")
     @Expose
-    public Double TVD;
+    public double TVD;
     @SerializedName("TWD")
     @Expose
-    public Double TWD;
+    public double TWD;
     @SerializedName("TZS")
     @Expose
-    public Double TZS;
+    public double TZS;
     @SerializedName("UAH")
     @Expose
-    public Double UAH;
+    public double UAH;
     @SerializedName("UGX")
     @Expose
-    public Double UGX;
+    public double UGX;
     @SerializedName("UYU")
     @Expose
-    public Double UYU;
+    public double UYU;
     @SerializedName("UZS")
     @Expose
-    public Double UZS;
+    public double UZS;
     @SerializedName("VES")
     @Expose
-    public Double VES;
+    public double VES;
     @SerializedName("VND")
     @Expose
-    public Double VND;
+    public double VND;
     @SerializedName("VUV")
     @Expose
-    public Double VUV;
+    public double VUV;
     @SerializedName("WST")
     @Expose
-    public Double WST;
+    public double WST;
     @SerializedName("XAF")
     @Expose
-    public Double XAF;
+    public double XAF;
     @SerializedName("XCD")
     @Expose
-    public Double XCD;
+    public double XCD;
     @SerializedName("XDR")
     @Expose
-    public Double XDR;
+    public double XDR;
     @SerializedName("XOF")
     @Expose
-    public Double XOF;
+    public double XOF;
     @SerializedName("XPF")
     @Expose
-    public Double XPF;
+    public double XPF;
     @SerializedName("YER")
     @Expose
-    public Double YER;
+    public double YER;
     @SerializedName("ZAR")
     @Expose
-    public Double ZAR;
+    public double ZAR;
     @SerializedName("ZMW")
     @Expose
-    public Double ZMW;
+    public double ZMW;
 
 }

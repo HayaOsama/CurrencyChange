@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import com.example.currencychange.R;
 import com.example.currencychange.ViewModel.CurrencyViewModel;
 import com.example.currencychange.ViewModel.entity.ConversionRate;
+import com.example.currencychange.ViewModel.entity.ConversionRates;
 import com.example.currencychange.ViewModel.entity.RateResponse;
 import com.hbb20.CountryCodePicker;
 
@@ -47,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
            public void onChanged(RateResponse rateResponse) {
               if(rateResponse!=null){
                   try {
-                      String to = toSpinner.getSelectedCountryNameCode();
-                      double amount = Double.parseDouble(fromCurrency.getText().toString());
-                      String isoTo = new Locale("" , to) .getISO3Country();
-                    double rate=  rateResponse.conversionRates.getClass().getField(isoTo).getDouble(new Object());
-                    toCurrency.setText(amount*rate +"");
-                  } catch (IllegalAccessException e) {
+                      if (rateResponse.conversionRates != null) {
+                          String to = toSpinner.getSelectedCountryNameCode();
+                          double amount = Double.parseDouble(fromCurrency.getText().toString());
+                          String isoTo = Currency.getInstance(new Locale("" , to)).getCurrencyCode();
+                          double rate = rateResponse.conversionRates.getClass().getField(isoTo).getDouble(new ConversionRates());
+                          Log.e(getPackageName(), "onChanged: "+rate);
+                          toCurrency.setText((amount * rate) + "");
+                      }
+                  }catch (IllegalAccessException e) {
                       e.printStackTrace();
                   } catch (NoSuchFieldException e) {
                       e.printStackTrace();
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCountrySelected() {
                 String from = fromSpinner.getSelectedCountryNameCode();
-                String isoFrom = new Locale("" , from) .getISO3Country();
+                String isoFrom =  Currency.getInstance(new Locale("" , from)).getCurrencyCode();
 
             viewModel.getRates(isoFrom).observeForever(rateResponseObserver);
                     //observe(convertResult);
