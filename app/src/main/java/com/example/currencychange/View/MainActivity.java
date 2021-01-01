@@ -13,16 +13,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.currencychange.R;
+import com.example.currencychange.ViewModel.CurrencyViewModel;
 import com.hbb20.CountryCodePicker;
 
 public class MainActivity extends AppCompatActivity {
   private   EditText fromCurrency , toCurrency ;
   private CountryCodePicker fromSpinner , toSpinner ;
   private   ImageView convert;
+  private CurrencyViewModel viewModel ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewModel = new CurrencyViewModel(getApplication());
         //connecting
         fromCurrency = findViewById(R.id.from_am);
         toCurrency = findViewById(R.id.to_am);
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 String from = fromSpinner.getSelectedCountryNameCode();
                 String to = toSpinner.getSelectedCountryNameCode();
                 double amount = Double.parseDouble(fromCurrency.getText().toString());
-                double result = convert(from, to , amount);
+                double result = viewModel.convert(from, to , amount);
                 toCurrency.setText(result+"");
             }
         });
@@ -55,7 +58,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public  double  convert(String from , String to , double amount){
-        return  1.0 ;
-    }
+
 }// end class
