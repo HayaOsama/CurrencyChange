@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.currencychange.R;
 import com.example.currencychange.ViewModel.CurrencyViewModel;
@@ -22,6 +23,7 @@ import com.example.currencychange.ViewModel.entity.ConversionRates;
 import com.example.currencychange.ViewModel.entity.RateResponse;
 import com.hbb20.CountryCodePicker;
 
+import java.lang.reflect.Field;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -53,13 +55,11 @@ public class MainActivity extends AppCompatActivity {
                           String to = toSpinner.getSelectedCountryNameCode();
                           double amount = Double.parseDouble(fromCurrency.getText().toString());
                           String isoTo = Currency.getInstance(new Locale("" , to)).getCurrencyCode();
-                          double rate = rateResponse.conversionRates.getClass().getField(isoTo).getDouble(new ConversionRates());
+                          double rate = rateResponse.conversionRates.getClass().getField(isoTo).getDouble( rateResponse.conversionRates);
                           Log.e(getPackageName(), "onChanged: "+rate);
                           toCurrency.setText((amount * rate) + "");
                       }
-                  }catch (IllegalAccessException e) {
-                      e.printStackTrace();
-                  } catch (NoSuchFieldException e) {
+                  }catch (IllegalAccessException | NoSuchFieldException e) {
                       e.printStackTrace();
                   }
               }
@@ -69,10 +69,11 @@ public class MainActivity extends AppCompatActivity {
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View fromChild =fromSpinner.getFocusedChild() ;
-                View toChild =toSpinner.getFocusedChild() ;
-                fromSpinner.bringChildToFront(toChild);
-                toSpinner.bringChildToFront(fromChild);
+                String toCode =  toSpinner.getSelectedCountryNameCode();
+                String fCode =  fromSpinner.getSelectedCountryNameCode();
+                fromSpinner.setCountryForNameCode(toCode);
+                toSpinner.setCountryForNameCode(fCode);
+                setConvert();
 
             }
         });
@@ -81,22 +82,23 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onCountrySelected() {
-                String from = fromSpinner.getSelectedCountryNameCode();
-                String isoFrom =  Currency.getInstance(new Locale("" , from)).getCurrencyCode();
+                setConvert();
 
-            viewModel.getRates(isoFrom).observeForever(rateResponseObserver);
-                    //observe(convertResult);
             }
         } ;
+
+
         fromSpinner.setOnCountryChangeListener(countryChangeListener);
         toSpinner.setOnCountryChangeListener(countryChangeListener);
 
     }// end onCreate
 
-    private void convert() {
+    private void setConvert(){
+        String from = fromSpinner.getSelectedCountryNameCode();
+        String isoFrom =  Currency.getInstance(new Locale("" , from)).getCurrencyCode();
+        viewModel.getRates(isoFrom).observeForever(rateResponseObserver);
+    }
 
-
-    }//end convert
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

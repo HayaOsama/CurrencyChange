@@ -31,13 +31,14 @@
 
     <EditText
         android:id="@+id/from_am"
-        android:layout_width="@dimen/eighty"
+        android:layout_width="@dimen/hundred"
         android:layout_height="@dimen/eighty"
-        android:layout_marginHorizontal="@dimen/sixteen"
+        android:layout_marginHorizontal="@dimen/thirty_two"
         android:ems="10"
         android:text="@string/demo"
         android:inputType="number"
-        android:textSize="@dimen/text_sixteen"
+        android:textSize="@dimen/text_twenty"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/from_spinner"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,15 +46,15 @@
 
     <EditText
         android:id="@+id/to_am"
-        android:layout_width="@dimen/eighty"
+        android:layout_width="@dimen/hundred"
         android:layout_height="@dimen/eighty"
-        android:layout_marginHorizontal="@dimen/sixteen"
         android:ems="10"
-        android:textSize="@dimen/text_sixteen"
         android:enabled="false"
         android:inputType="number"
+        android:textSize="@dimen/text_twenty"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/to_spinner"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/from_am"
         app:layout_constraintTop_toTopOf="@+id/to_spinner" />
 
     <ImageView

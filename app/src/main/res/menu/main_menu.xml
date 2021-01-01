@@ -5,6 +5,6 @@
     android:id="@+id/track_currency"
     android:icon="@drawable/ic_baseline_remove_red_eye_24"
     android:title="@string/track_currency"
-    app:showAsAction="always"
+    app:showAsAction="ifRoom"
     />
 </menu>

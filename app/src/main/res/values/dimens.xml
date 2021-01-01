@@ -12,5 +12,5 @@
     <dimen name="sixteen">16dp</dimen>
     <dimen name="text_twelve">12sp</dimen>
     <dimen name="text_sixteen">16sp</dimen>
-    <dimen name="text_twenty">20sp</dimen>
+    <dimen name="text_twenty">32sp</dimen>
 </resources>
