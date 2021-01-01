@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blue"
     tools:context=".View.MainActivity">
-
-    <androidx.appcompat.widget.AppCompatSpinner
+<com.hbb20.CountryCodePicker
         android:id="@+id/from_spinner"
         android:layout_width="@dimen/hundred_twenty"
         android:layout_height="@dimen/fifty"
@@ -17,9 +16,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.17000002"
-        tools:listitem="@layout/spinner_item" />
+        />
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <com.hbb20.CountryCodePicker
         android:id="@+id/to_spinner"
         android:layout_width="@dimen/hundred_twenty"
         android:layout_height="@dimen/fifty"
@@ -28,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/from_spinner"
         app:layout_constraintVertical_bias="0.43"
-        tools:listitem="@layout/spinner_item" />
+        />
 
     <EditText
         android:id="@+id/from_am"
