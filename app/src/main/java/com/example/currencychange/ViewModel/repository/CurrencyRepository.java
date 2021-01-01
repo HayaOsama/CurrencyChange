@@ -6,9 +6,10 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.currencychange.Model.ApiInterface;
-import com.example.currencychange.Model.NetworkUtils;
-import com.example.currencychange.ViewModel.entity.SafetyResult;
+import com.example.currencychange.Model.networking.ApiInterface;
+import com.example.currencychange.Model.networking.NetworkUtils;
+import com.example.currencychange.ViewModel.entity.ConversionRate;
+import com.example.currencychange.ViewModel.entity.RateResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,14 +31,14 @@ public class CurrencyRepository {
         return instance ;
     }
 
-    public LiveData<SafetyResult> convert(String from, String to, double amount){
-         MutableLiveData<SafetyResult> res = new MutableLiveData();
-        apiInterface.convert(from ,to , amount ).enqueue(new Callback<SafetyResult>() {
+    public LiveData<ConversionRate> convert(String from, String to, double amount){
+         MutableLiveData<ConversionRate> res = new MutableLiveData();
+        apiInterface.convert(from ,to , amount ).enqueue(new Callback<ConversionRate>() {
              @Override
-             public void onResponse(Call<SafetyResult> call, Response<SafetyResult> response) {
+             public void onResponse(Call<ConversionRate> call, Response<ConversionRate> response) {
 
                  if (response.isSuccessful()) {
-                     Log.e(TAG, "onResponse:"+response.body().getQuery());
+                     Log.e(TAG, "onResponse:"+response.body());
                      res.setValue(response.body());
                  } else {
                      Log.e(TAG, "onResponse:  null data ");
@@ -46,11 +47,35 @@ public class CurrencyRepository {
              }
 
              @Override
-             public void onFailure(Call<SafetyResult> call, Throwable t) {
+             public void onFailure(Call<ConversionRate> call, Throwable t) {
                  Log.e(TAG, "onResponse:  "+t.getMessage());
 
              }
          });
+        return res;
+    }
+
+    public LiveData<RateResponse> getRates(String isoFrom) {
+        MutableLiveData<RateResponse> res = new MutableLiveData();
+        apiInterface.getRates(isoFrom).enqueue(new Callback<RateResponse>() {
+            @Override
+            public void onResponse(Call<RateResponse> call, Response<RateResponse> response) {
+
+                if (response.isSuccessful()) {
+                    Log.e(TAG, "onResponse:"+response.body());
+                    res.setValue(response.body());
+                } else {
+                    Log.e(TAG, "onResponse:  null data ");
+                    res.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RateResponse> call, Throwable t) {
+                Log.e(TAG, "onResponse:  "+t.getMessage());
+
+            }
+        });
         return res;
     }
 }

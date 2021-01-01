@@ -1,10 +1,11 @@
 package com.example.currencychange.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Observer;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,8 +16,12 @@ import android.widget.ImageView;
 
 import com.example.currencychange.R;
 import com.example.currencychange.ViewModel.CurrencyViewModel;
-import com.example.currencychange.ViewModel.entity.SafetyResult;
+import com.example.currencychange.ViewModel.entity.ConversionRate;
+import com.example.currencychange.ViewModel.entity.RateResponse;
 import com.hbb20.CountryCodePicker;
+
+import java.util.Currency;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
   private   EditText fromCurrency , toCurrency ;
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
   private   ImageView convert;
   private CurrencyViewModel viewModel ;
   private double result = 0.0 ;
-  private Observer<SafetyResult> convertResult ;
+  private Observer<RateResponse> rateResponseObserver ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,33 +42,45 @@ public class MainActivity extends AppCompatActivity {
         fromSpinner = findViewById(R.id.from_spinner);
         toSpinner = findViewById(R.id.to_spinner);
         convert = findViewById(R.id.convert);
-        convertResult = new Observer<SafetyResult>() {
-            @Override
-            public void onChanged(SafetyResult safetyResult) {
-                if(safetyResult!=null){
-                    result= safetyResult.getResult();
-                    toCurrency.setText(result+"");
-                }
-
-            }
-        };
+       rateResponseObserver=new Observer<RateResponse>() {
+           @Override
+           public void onChanged(RateResponse rateResponse) {
+              if(rateResponse!=null){
+                  try {
+                      String to = toSpinner.getSelectedCountryNameCode();
+                      double amount = Double.parseDouble(fromCurrency.getText().toString());
+                      String isoTo = new Locale("" , to) .getISO3Country();
+                    double rate=  rateResponse.conversionRates.getClass().getField(isoTo).getDouble(new Object());
+                    toCurrency.setText(amount*rate +"");
+                  } catch (IllegalAccessException e) {
+                      e.printStackTrace();
+                  } catch (NoSuchFieldException e) {
+                      e.printStackTrace();
+                  }
+              }
+           }
+       };
+        convert.setClickable(true);
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CountryCodePicker temp = fromSpinner ;
-                fromSpinner = toSpinner ;
-              toSpinner=temp;
+                View fromChild =fromSpinner.getFocusedChild() ;
+                View toChild =toSpinner.getFocusedChild() ;
+                fromSpinner.bringChildToFront(toChild);
+                toSpinner.bringChildToFront(fromChild);
 
             }
         });
 
         CountryCodePicker.OnCountryChangeListener  countryChangeListener = new CountryCodePicker.OnCountryChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onCountrySelected() {
                 String from = fromSpinner.getSelectedCountryNameCode();
-                String to = toSpinner.getSelectedCountryNameCode();
-                double amount = Double.parseDouble(fromCurrency.getText().toString());
-                viewModel.convert(from, to , amount).observeForever(convertResult);//observe(convertResult);
+                String isoFrom = new Locale("" , from) .getISO3Country();
+
+            viewModel.getRates(isoFrom).observeForever(rateResponseObserver);
+                    //observe(convertResult);
             }
         } ;
         fromSpinner.setOnCountryChangeListener(countryChangeListener);

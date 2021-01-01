@@ -1,4 +1,4 @@
-package com.example.currencychange.Model;
+package com.example.currencychange.Model.networking;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getName();
-    private static final String BASE_URL ="https://fixer-fixer-currency-v1.p.rapidapi.com/";
-    public static final String API_KEY = "3d428328a3mshbe680ff208e3b56p1b6f20jsn9d0f38c4c07b";
+    public static final String API_KEY = "02092b830e09f2bdd9a229d2";
+    private static final String BASE_URL ="https://v6.exchangerate-api.com/v6/"+API_KEY +"/";
     public static boolean myConnection;
     private static NetworkUtils sInstance;
     private ApiInterface apiInterface;
