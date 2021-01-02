@@ -6,8 +6,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.currencychange.Model.networking.ApiInterface;
-import com.example.currencychange.Model.networking.NetworkUtils;
+import com.example.currencychange.Model.ApiInterface;
+import com.example.currencychange.Model.NetworkUtils;
 import com.example.currencychange.ViewModel.entity.ConversionRate;
 import com.example.currencychange.ViewModel.entity.RateResponse;
 
@@ -18,12 +18,10 @@ import retrofit2.Response;
 public class CurrencyRepository {
     private static final String TAG = CurrencyRepository.class.getName();
    private ApiInterface apiInterface ;
-   private NetworkUtils networkUtils ;
     private  static CurrencyRepository instance ;
 
     private CurrencyRepository(Application application) {
-        networkUtils = NetworkUtils.getInstance(application);
-        apiInterface = networkUtils.getApiInterface();
+        apiInterface = NetworkUtils.getInstance(application).getApiInterface();
     }
 
     public static CurrencyRepository getInstance(Application application){

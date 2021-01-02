@@ -13,12 +13,17 @@ import com.example.currencychange.ViewModel.repository.CurrencyRepository;
 
 public class CurrencyViewModel extends AndroidViewModel {
     private static final String TAG = CurrencyViewModel.class.getName();
- CurrencyRepository repository ;
-    public CurrencyViewModel(@NonNull Application application) {
+    CurrencyRepository repository ;
+    private static CurrencyViewModel model ;
+    private CurrencyViewModel(@NonNull Application application) {
         super(application);
         repository = CurrencyRepository.getInstance(application);
     }
 
+    public static CurrencyViewModel getModel(Application application) {
+        if(model==null) model=new CurrencyViewModel(application);
+        return model;
+    }
 
     public LiveData<ConversionRate> convert(String from, String to, double amount) {
         Log.e(TAG, "convert From: "+from );

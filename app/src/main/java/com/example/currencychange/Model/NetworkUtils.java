@@ -1,4 +1,4 @@
-package com.example.currencychange.Model.networking;
+package com.example.currencychange.Model;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -13,7 +13,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkUtils {
-    private static final String TAG = NetworkUtils.class.getName();
     public static final String API_KEY = "02092b830e09f2bdd9a229d2";
     private static final String BASE_URL ="https://v6.exchangerate-api.com/v6/"+API_KEY +"/";
     public static boolean myConnection;

@@ -1,4 +1,4 @@
-package com.example.currencychange.Model.networking;
+package com.example.currencychange.Model;
 
 import com.example.currencychange.ViewModel.entity.ConversionRate;
 import com.example.currencychange.ViewModel.entity.RateResponse;
