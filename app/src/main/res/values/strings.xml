@@ -4,4 +4,6 @@
     <string name="country_flag">Country Flag</string>
     <string name="country_name">Name</string>
     <string name="demo">100</string>
+    <string name="notify_name">CurrenyRate Change</string>
+    <string name="notify_desc">Rate between your prefrenced currency changed</string>
 </resources>
